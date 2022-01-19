@@ -33,6 +33,9 @@ func main() {
 		go ping(ch, i)
 		time.Sleep(time.Second * 2)
 	}
+
+	go printText()
+
 	fmt.Println("Normal")
 }
 
