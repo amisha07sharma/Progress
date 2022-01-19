@@ -11,26 +11,28 @@ func printText() {
 	}
 }
 
+func ping(ch chan int, i int) {
+	ch <- i
+	fmt.Println("ping", i)
+}
+
+func pong(ch chan int) {
+	i := <-ch
+	fmt.Println("pong", i)
+}
+
 func main() {
 
-	// ping = recieving
-	// pong = sending
-	ch := make(chan int32, 8)
+	ch := make(chan int)
 
-	time.Sleep(time.Second * 5)
+	for i := 0; i < 5; i++ {
 
-	ch <- 3
-	go fmt.Println("ping")
-	time.Sleep(time.Second * 5)
+		go pong(ch)
+		time.Sleep(time.Second)
 
-	i := <-ch
-
-	go fmt.Println(i, "pong")
-
-	go printText()
-
-	time.Sleep(time.Second * 5)
-
+		go ping(ch, i)
+		time.Sleep(time.Second * 2)
+	}
 	fmt.Println("Normal")
 }
 
