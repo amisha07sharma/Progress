@@ -1,8 +1,8 @@
 package main
 
 import (
+	"GO/math"
 	"fmt"
-	"time"
 )
 
 func printText() {
@@ -23,28 +23,30 @@ func pong(ch chan int) {
 
 func main() {
 
-	ch := make(chan int)
+	// ch := make(chan int)
 
-	for i := 0; i < 5; i++ {
+	// for i := 0; i < 5; i++ {
 
-		go pong(ch)
-		time.Sleep(time.Second)
+	// 	go pong(ch)
+	// 	time.Sleep(time.Second)
 
-		go ping(ch, i)
-		time.Sleep(time.Second * 2)
-	}
+	// 	go ping(ch, i)
+	// 	time.Sleep(time.Second * 2)
+	// }
 
 	// close(ch)
 	// go printText()
-	go pong(ch)
-	time.Sleep(time.Second * 8)
+	// time.Sleep(time.Second)
 
-	fmt.Println("Normal")
+	// fmt.Println("Normal")
+
+	math.Add(2, 3)
+	math.Subtract(9, 2)
 }
 
 // 5 rounds
 // ping pong
 // once ping then pong
-// what is functional programmimg, how gunctional programming can be achieved using golang.
+// what is functional programmimg, how functional programming can be achieved using golang.
 // currying
 // dining philosophers problem
