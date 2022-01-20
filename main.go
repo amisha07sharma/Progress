@@ -34,7 +34,10 @@ func main() {
 		time.Sleep(time.Second * 2)
 	}
 
-	go printText()
+	// close(ch)
+	// go printText()
+	go pong(ch)
+	time.Sleep(time.Second * 8)
 
 	fmt.Println("Normal")
 }
