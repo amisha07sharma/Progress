@@ -5,32 +5,35 @@ import (
 	"time"
 )
 
+type Object struct {
+}
+
 func printText() {
 	for i := 0; i < 5; i++ {
 		fmt.Println("Anonymous goroutine")
 	}
 }
 
-func ping(ch chan int, i int) {
+func ping(ch chan Object, i Object) {
 	ch <- i
-	fmt.Println("ping", i)
+	fmt.Println("ping")
 }
 
-func pong(ch chan int) {
-	i := <-ch
-	fmt.Println("pong", i)
+func pong(ch chan Object) {
+	<-ch
+	fmt.Println("pong")
 }
 
 func main() {
 
-	ch := make(chan int)
+	ch := make(chan Object)
 
 	for i := 0; i < 5; i++ {
 
 		go pong(ch)
 		time.Sleep(time.Second)
 
-		go ping(ch, i)
+		go ping(ch, Object{})
 		time.Sleep(time.Second * 2)
 	}
 
@@ -39,7 +42,6 @@ func main() {
 	time.Sleep(time.Second)
 
 	fmt.Println("Normal")
-
 }
 
 // 5 rounds
