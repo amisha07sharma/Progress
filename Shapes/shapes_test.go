@@ -15,6 +15,16 @@ func TestArea(t *testing.T) {
 			t.Errorf("wanted %q but got %q", want, got)
 		}
 	})
+
+	t.Run("Area of Square", func(t *testing.T) {
+		sq := square{4}
+		got := sq.Area()
+		want := 16
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("wanted %q but got %q", want, got)
+		}
+	})
 }
 
 func Area(rect Rectangle) {
