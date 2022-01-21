@@ -6,5 +6,5 @@ import (
 )
 
 func printer(writer *bytes.Buffer, str string) {
-	fmt.Printf("Hello, %s", str)
+	fmt.Fprintf(writer, "Hello, %s", str)
 }
