@@ -1,5 +1,9 @@
 package shapes
 
+type Shape interface {
+	Area() int
+}
+
 type Rectangle struct {
 	length  int
 	breadth int

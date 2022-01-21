@@ -6,24 +6,27 @@ import (
 )
 
 func TestArea(t *testing.T) {
-	t.Run("Area of Rectangle", func(t *testing.T) {
-		rect := Rectangle{2, 3}
-		got := rect.Area()
-		want := 6
 
+	checkArea := func(t testing.TB, shape Shape, want int) {
+		t.Helper()
+		got := shape.Area()
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("wanted %q but got %q", want, got)
 		}
+	}
+
+	t.Run("Area of Rectangle", func(t *testing.T) {
+		rect := Rectangle{2, 3}
+		want := 6
+
+		checkArea(t, rect, want)
 	})
 
 	t.Run("Area of Square", func(t *testing.T) {
 		sq := square{4}
-		got := sq.Area()
 		want := 16
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("wanted %q but got %q", want, got)
-		}
+		checkArea(t, sq, want)
 	})
 }
 
