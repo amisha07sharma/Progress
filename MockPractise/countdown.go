@@ -15,7 +15,7 @@ const countdownStart = 3
 // func (sleep Sleeper) Sleep() {
 // 	time.Sleep(time.Second)
 // }
-type MockSleeper interface {
+type Sleeper interface {
 	Sleep()
 }
 

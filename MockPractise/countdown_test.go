@@ -5,17 +5,17 @@ import (
 	"testing"
 )
 
-type Sleeper struct {
+type MockSleeper struct {
 	call int
 }
 
-func (s *Sleeper) Sleep() {
+func (s *MockSleeper) Sleep() {
 	s.call++
 }
 
 func TestCountdown(t *testing.T) {
 	buffer := bytes.Buffer{}
-	sleep := Sleeper{}
+	sleep := MockSleeper{}
 	countdown(&buffer, &sleep)
 	got := buffer.String()
 	want := `3
@@ -25,5 +25,8 @@ Go!`
 
 	if got != want {
 		t.Errorf("wanted %s but got %s", want, got)
+	}
+	if sleep.call != 4 {
+		t.Errorf("not enough calls to sleeper, want 4 got %d", sleep.call)
 	}
 }
