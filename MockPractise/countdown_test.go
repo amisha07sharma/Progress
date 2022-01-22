@@ -5,9 +5,18 @@ import (
 	"testing"
 )
 
+type Sleeper struct {
+	call int
+}
+
+func (s *Sleeper) Sleep() {
+	s.call++
+}
+
 func TestCountdown(t *testing.T) {
 	buffer := bytes.Buffer{}
-	countdown(&buffer)
+	sleep := Sleeper{}
+	countdown(&buffer, &sleep)
 	got := buffer.String()
 	want := `3
 2
